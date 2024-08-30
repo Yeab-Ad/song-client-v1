@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { thunk } from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
 import {
   createSongReducer,
   listSongsReducer,
@@ -7,6 +7,7 @@ import {
   statisticsReducer,
   updateSongReducer,
 } from "./reducer/reducer";
+import mySaga from "./sagas";
 
 const rootReducer = combineReducers({
   createSong: createSongReducer,
@@ -16,19 +17,12 @@ const rootReducer = combineReducers({
   statistics: statisticsReducer,
 });
 
-const initialState = {
-  //
-};
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-const middleware = [thunk]; // Correct middleware assignment
-
-const store = createStore(
-  rootReducer,
-  initialState,
-  applyMiddleware(...middleware)
-);
+sagaMiddleware.run(mySaga);
 
 export type RootState = ReturnType<typeof rootReducer>;
-export type DispatchType = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;

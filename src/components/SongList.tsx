@@ -24,13 +24,14 @@ import {
 } from "@chakra-ui/react";
 import SongCard from "./SongCard";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  listSongsAction,
-  removeSongAction,
-  updateSongAction,
-} from "../Redux/action/actions";
+// import {
+//   listSongsRequest,
+//   removeSongAction,
+//   updateSongAction,
+// } from "../Redux/action/actions";
 import { SongFilters } from "./SongFilters";
 import { FaMusic } from "react-icons/fa";
+import { listSongsRequest, removeSongRequest, updateSongRequest } from "../Redux/action/actions";
 
 const SongList: React.FC<SongListProps> = () => {
   const [filters, setFilters] = useState({ title: "", artist: "", genre: "" });
@@ -64,7 +65,7 @@ const SongList: React.FC<SongListProps> = () => {
   const { loading: removeLoading } = _removeSong;
 
   useEffect(() => {
-    dispatch<any>(listSongsAction(filters, "top-right", toast));
+    dispatch<any>(listSongsRequest(filters, "top-right", toast));
   }, [success, filters]);
 
   useEffect(() => {
@@ -79,8 +80,8 @@ const SongList: React.FC<SongListProps> = () => {
 
   const handleEdit = (id: string, updatedSong: Song) => {
     dispatch<any>(
-      updateSongAction(id, updatedSong, "top-right", toast, () => {
-        dispatch<any>(listSongsAction(filters, "top-right", toast));
+      updateSongRequest(id, updatedSong, "top-right", toast, () => {
+        dispatch<any>(listSongsRequest(filters, "top-right", toast));
       })
     );
   };
@@ -88,8 +89,8 @@ const SongList: React.FC<SongListProps> = () => {
   const handleDelete = () => {
     if (songToDelete) {
       dispatch<any>(
-        removeSongAction(songToDelete._id, "top-right", toast, () => {
-          dispatch<any>(listSongsAction(filters, "top-right", toast));
+        removeSongRequest(songToDelete._id, "top-right", toast, () => {
+          dispatch<any>(listSongsRequest(filters, "top-right", toast));
         })
       );
       setIsModalOpen(false);

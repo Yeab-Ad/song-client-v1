@@ -17,8 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { generateStatisticsAction } from "../Redux/action/actions";
-import { Bar, Pie } from "react-chartjs-2";
+ import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -32,6 +31,7 @@ import {
 } from "chart.js";
 import { getRandomColor } from "../util/tweeks";
 import { FaMusic, FaUser, FaTags, FaCompactDisc } from "react-icons/fa";
+import { generateStatisticsRequest } from "../Redux/action/actions";
 
 ChartJS.register(
   CategoryScale,
@@ -69,7 +69,7 @@ const MusicStatistics = () => {
   const { statistics: statisticsData, loading: statLoading } = _statistics;
 
   useEffect(() => {
-    dispatch<any>(generateStatisticsAction("top-right", toast));
+    dispatch<any>(generateStatisticsRequest("top-right", toast));
   }, [createSucces, updateSucces, removeSucces]);
 
   if (statLoading) {
