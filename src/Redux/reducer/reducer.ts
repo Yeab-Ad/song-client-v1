@@ -81,7 +81,6 @@ export const updateSongReducer = (
       return { ...state, loading: true, error: null };
     case UPDATE_SONG_SUCCESS:
       return { ...state, success: action.payload, loading: false, error: null };
-    // return { ...state, loading: false, error: null };
     case UPDATE_SONG_FAILURE:
       return { ...state, loading: false, error: action.payload };
     default:
@@ -98,7 +97,6 @@ export const removeSongReducer = (
       return { ...state, loading: true, error: null };
     case REMOVE_SONG_SUCCESS:
       return { ...state, success: action.payload, loading: false, error: null };
-    // return { ...state, loading: false, error: null };
     case REMOVE_SONG_FAILURE:
       return { ...state, loading: false, error: action.payload };
     default:
@@ -109,7 +107,7 @@ export const removeSongReducer = (
 interface StatisticsState {
   loading: boolean;
   error: string | null;
-  statistics: any; // Update the type according to your response structure
+  statistics: any;
 }
 
 const initialStatisticsState: StatisticsState = {

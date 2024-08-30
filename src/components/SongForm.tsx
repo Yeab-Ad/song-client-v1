@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { Song } from "../interface/interfaces";
 import { useDispatch } from "react-redux";
-import { createSongAction } from "../Redux/action/actions";
+import { createSongRequest } from "../Redux/action/actions";
 
 interface SongFormProps {
   isOpen: boolean;
@@ -67,7 +67,7 @@ const SongForm: React.FC<SongFormProps> = ({
       onSubmit(songWithoutId); // Call the onSubmit function with the edited song data
     } else {
       dispatch<any>(
-        createSongAction(songWithoutId, "top-right", toast, () => {
+        createSongRequest(songWithoutId, "top-right", toast, () => {
           setSongData({
             _id: "",
             title: "",

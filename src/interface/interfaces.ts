@@ -13,10 +13,9 @@ export interface SongCardProps {
   onDelete: () => void;
   onEdit: (updatedSong: Song) => void;
 }
-export interface SongListProps {
- }
+export interface SongListProps {}
 
-export interface SongFormProps { 
+export interface SongFormProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (song: Song) => void;
